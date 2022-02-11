@@ -17,3 +17,10 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jov
 
 ansible --inventory inventory.txt --user master --ask-pass all -m ping
 ansible --inventory inventory.txt --user master --ask-pass all -a "/bin/echo hello"
+
+
+
+# create mytask.yaml
+ansible-playbook --inventory inventory.txt --user master --ask-pass mytask.yaml
+ssh 172.17.0.2
+$ ls /tmp     # It should be there
