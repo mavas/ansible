@@ -10,6 +10,7 @@ Try using Ubuntu docker images with SSH installed as managed nodes
 
 
 
+git clone https://github.com/art267/docker-ubuntu-sshd/
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jovial_khorana
 
 
