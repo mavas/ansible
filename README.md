@@ -1,25 +1,22 @@
 # Ansible work
 
-## Todo items
-- Make sure to uninstall ansible from env_fun
-- Try using localhost SSH servers as managed nodes
-- Try using Ubuntu docker images with SSH installed as managed nodes
+## An Ubuntu Docker image with SSHD started/included.
+
+This repository was perfect for this work, as it is just the usual Ubuntu image, but with everything else needed to also make sure that an SSH server was start on port 22:
+```
+git clone https://github.com/art267/docker-ubuntu-sshd/
+```
+The strategy is to use the host OS as the controller and one or more docker Ubuntu containers as managed nodes.  Currently, there is just one Ubuntu container running SSH, but maybe docker-compose will be used to experiment with Ansible modifying multiple managed nodes later.
 
 ## Some commands
 When I tab-complete `ansible` after first time installing it in virtual_env:
 
 ```
-ansible             ansible-connection  ansible-doc         ansible-inventory   ansible-pull        ansible-vault       
+ansible             ansible-connection  ansible-doc         ansible-inventory   ansible-pull        ansible-vault
 ansible-config      ansible-console     ansible-galaxy      ansible-playbook    ansible-test
 ```
 
-## An Ubuntu Docker image with SSHD started/included.
-```
-git clone https://github.com/art267/docker-ubuntu-sshd/
-```
-The strategy is to use the host OS as the controller and one or more docker Ubuntu containers as managed nodes.
-
-## Example commands
+## Things learned; example commands
 Tells you the IP address of a Docker image:
 ```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jovial_khorana
