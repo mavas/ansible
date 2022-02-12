@@ -1,0 +1,20 @@
+---
+- name: Update server
+  hosts: all
+
+  tasks:
+  - name: Create a file.
+    ansible.builtin.shell:
+      cmd: touch /tmp/love.txt
+
+  - name: List the file.
+    ansible.builtin.shell:
+      cmd: ls /tmp
+    register: ls
+
+  - debug:
+      var: ls.stdout_lines
+
+  - name: Remove the file.
+    ansible.builtin.shell:
+      cmd: rm /tmp/love.txt

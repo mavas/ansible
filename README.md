@@ -46,3 +46,14 @@ SSH password:
 ansible_ansible.legacy.command_payload_wl40k0fz
 ansible_was_here
 ```
+
+Started dealing with playbooks:
+```
+ansible-playbook --inventory inventory.txt --ask-pass --check playbook.yml
+```
+
+Create playbook to create a file, verify it's there with output, and then remove the file, and verify it's removed:
+```
+ansible-playbook --inventory inventory.txt --user master --ask-pass playbook.yml
+docker exec --interactive --tty keen_haibt ls /tmp
+```
