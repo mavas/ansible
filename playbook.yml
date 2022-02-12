@@ -1,9 +1,20 @@
 ---
-- name: Update server
+- name: Create file, verify that it's there, and then delete it.
   hosts: all
 
   tasks:
-  - name: Create a file.
+  - name: Ensure first that the file doesn't exist with ansible.builtin.file state=absent
+    stat: path=/tmp/love.txt
+    register: stat
+
+  - name: Whether or not the file is there
+    when: stat.stat.exists
+    debug: msg="File exists"
+  - name: Whether or not the file is there
+    when: not stat.stat.exists
+    debug: msg="File does NOT exist"
+
+  - name: Create the file.
     ansible.builtin.shell:
       cmd: touch /tmp/love.txt
 
@@ -11,10 +22,14 @@
     ansible.builtin.shell:
       cmd: ls /tmp
     register: ls
-
   - debug:
       var: ls.stdout_lines
 
   - name: Remove the file.
     ansible.builtin.shell:
       cmd: rm /tmp/love.txt
+
+
+#- name: Play number 2
+#  hosts: all
+...
