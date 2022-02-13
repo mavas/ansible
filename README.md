@@ -3,14 +3,14 @@
 Some beginner's work I've done with learning Ansible.
 
 ## Some commands
-When I tab-complete `ansible` after first time installing it in virtual_env:
+When I tab-complete `ansible` after first time installing in a virtual_env:
 
 ```
 ansible             ansible-connection  ansible-doc         ansible-inventory   ansible-pull        ansible-vault
 ansible-config      ansible-console     ansible-galaxy      ansible-playbook    ansible-test
 ```
 
-## An Ubuntu Docker image with SSHD started/included.
+## A Docker image with SSHD started/included.
 
 This repository was perfect for this work, as it is just the usual Ubuntu image, but with everything else needed to also make sure that an SSH server was start on port 22:
 ```
@@ -19,7 +19,7 @@ cd docker-ubuntu-sshd
 docker build -t art567/ubuntu .
 docker run --interactive --tty --rm --publish 22 art567/ubuntu
 ```
-The strategy is to use the host OS as the controller and one or more docker Ubuntu containers as managed nodes.
+The strategy is to use the host OS as the controller and one or more containers as managed nodes.
 
 ## A session..
 Tells you the IP address of a Docker image:
