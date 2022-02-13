@@ -4,12 +4,15 @@
 - name: Create file, verify that it's there, and then delete it.
   hosts: all
 
+  vars:
+    filename: "/tmp/love.txt"
+
   tasks:
   - name: Ensure first that the file doesn't exist
     #ansible.builtin.file:
-    #  path: /tmp/love.txt
+    #  path: {{ filename }}
     #  state: absent
-    stat: path=/tmp/love.txt
+    stat: path={{ filename }}
     register: stat
   - name: Whether or not the file is there
     when: stat.stat.exists
@@ -20,7 +23,7 @@
 
   - name: Create the file.
     ansible.builtin.shell:
-      cmd: touch /tmp/love.txt
+      cmd: touch {{ filename }}
 
   - name: List the file.
     ansible.builtin.shell:
@@ -31,7 +34,7 @@
 
   - name: Remove the file.
     ansible.builtin.shell:
-      cmd: rm /tmp/love.txt
+      cmd: rm {{ filename }}
 
 
 #- name: Play number 2
