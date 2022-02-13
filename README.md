@@ -21,10 +21,10 @@ docker run --interactive --tty --rm --publish 22 art567/ubuntu
 ```
 The strategy is to use the host OS as the controller and one or more docker Ubuntu containers as managed nodes.
 
-## Things learned; example commands
+## Session
 Tells you the IP address of a Docker image:
 ```
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jovial_khorana
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' imagename
 ```
 
 These commands worked:
@@ -57,7 +57,7 @@ ansible-playbook --inventory inventory.txt --ask-pass --check playbook.yml
 Create playbook to create a file, verify it's there with output, and then remove the file, and verify it's removed:
 ```
 ansible-playbook --inventory inventory.txt --user master --ask-pass playbook.yml
-docker exec --interactive --tty keen_haibt ls /tmp
+docker exec --interactive --tty imagename ls /tmp
 ```
 
 ```
