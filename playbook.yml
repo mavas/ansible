@@ -1,12 +1,16 @@
 ---
+# Playbook for 1.) creating a file, and 2.) removing the file.
+
 - name: Create file, verify that it's there, and then delete it.
   hosts: all
 
   tasks:
-  - name: Ensure first that the file doesn't exist with ansible.builtin.file state=absent
+  - name: Ensure first that the file doesn't exist
+    #ansible.builtin.file:
+    #  path: /tmp/love.txt
+    #  state: absent
     stat: path=/tmp/love.txt
     register: stat
-
   - name: Whether or not the file is there
     when: stat.stat.exists
     debug: msg="File exists"
@@ -32,4 +36,8 @@
 
 #- name: Play number 2
 #  hosts: all
+#  tasks:
+#  - name: Show available facts for the system
+#    ansible.builtin.debug:
+#      var: ansible_facts
 ...
